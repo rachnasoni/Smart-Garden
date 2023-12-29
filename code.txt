@@ -1,0 +1,45 @@
+int pirPin=7, ldrPin=0, mPin=1, ldrOPin=4, pumpPin=8, buzzerPin=2;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(0,INPUT);
+  pinMode(1,INPUT);
+  pinMode(7,INPUT);
+  pinMode(4,OUTPUT);
+  pinMode(2,OUTPUT);
+  pinMode(8,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  LDR();
+  moisture_sensor();
+  PIR();
+}
+
+//LDR code
+void LDR(){
+  if(analogRead(ldrPin)>230){
+    digitalWrite(ldrOPin,HIGH);}
+  
+  else{
+      digitalWrite(ldrOPin,LOW);}
+  }
+
+void moisture_sensor(){
+  if(analogRead(mPin)>600){
+    digitalWrite(pumpPin,HIGH);}
+    
+  else{
+      digitalWrite(pumpPin,LOW);
+      }
+  }
+
+void PIR(){
+  if(digitalRead(pirPin)==HIGH){
+    digitalWrite(buzzerPin,HIGH);}
+    
+  else{
+    digitalWrite(buzzerPin,LOW);}
+  }
